@@ -1,0 +1,254 @@
+/* MOHALLA SEVA - SIGNUP & LOGIN STYLES */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --ms-blue-primary: #153D74;
+  --ms-blue-dark: #0e294f;
+  --ms-green-primary: #2E6A63;
+  --ms-green-dark: #23534d;
+  --ms-slate-900: #0f172a;
+  --ms-slate-800: #1e293b;
+  --ms-slate-700: #334155;
+  --ms-slate-600: #475569;
+  --ms-slate-500: #64748b;
+  --ms-slate-400: #94a3b8;
+  --ms-border: #e2e8f0;
+  --ms-border-input: #cbd5e1;
+  --ms-font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--ms-font-family);
+  background: linear-gradient(135deg, #0f172a 0%, #153D74 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+#formwrap {
+  width: 100%;
+  max-width: 500px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#animationbox {
+  height: 6px;
+  width: 100%;
+  background: linear-gradient(90deg, #153D74, #2E6A63, #153D74);
+  background-size: 300% 100%;
+  animation: gradientMove 4s linear infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+#signupform {
+  padding: 2.25rem 2.25rem 2rem;
+}
+
+.login-brand-header {
+  text-align: center;
+  margin-bottom: 1.75rem;
+}
+
+.login-brand-logo {
+  height: 50px;
+  margin-bottom: 8px;
+}
+
+.login-brand-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--ms-slate-900);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.login-brand-sub {
+  font-size: 0.85rem;
+  color: var(--ms-slate-500);
+  margin-top: 2px;
+}
+
+/* Professional Dual-Role Toggle Switch */
+#selectadmin {
+  display: flex;
+  background: #f1f5f9;
+  border: 1.5px solid var(--ms-border-input);
+  border-radius: 10px;
+  padding: 4px;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.syscontroller {
+  flex: 1;
+  padding: 8px 0;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--ms-slate-600);
+  cursor: pointer;
+  border-radius: 7px;
+  transition: all 0.18s ease;
+  user-select: none;
+}
+
+.syscontroller:hover {
+  color: var(--ms-slate-900);
+}
+
+.syscontroller.controlstyle {
+  background: var(--ms-blue-primary);
+  color: #ffffff;
+  box-shadow: 0 2px 8px rgba(21, 61, 116, 0.3);
+}
+
+/* Forms */
+#signinform,
+#formcontent,
+#onboarding {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+}
+
+#formcontent,
+#onboarding {
+  display: none;
+}
+
+.inputbox {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.inputbox label {
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--ms-slate-700);
+}
+
+.inputbox input,
+.locationbox input {
+  padding: 10px 14px;
+  border: 1.5px solid var(--ms-border-input);
+  border-radius: 8px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.18s;
+  width: 100%;
+}
+
+.inputbox input:focus,
+.locationbox input:focus {
+  border-color: var(--ms-blue-primary);
+  box-shadow: 0 0 0 3px rgba(21, 61, 116, 0.12);
+}
+
+.signinbtnwrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 0.75rem;
+}
+
+#signinbtn,
+#register,
+#onboarding button {
+  background: var(--ms-blue-primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(21, 61, 116, 0.28);
+  transition: all 0.18s ease;
+  font-family: inherit;
+  letter-spacing: 0.2px;
+}
+
+#signinbtn:hover,
+#register:hover,
+#onboarding button:hover {
+  background: var(--ms-blue-dark);
+  transform: translateY(-1px);
+}
+
+#createacc {
+  background: transparent;
+  color: var(--ms-blue-primary);
+  border: 1.5px solid var(--ms-border-input);
+  border-radius: 8px;
+  padding: 10px;
+  font-size: 0.88rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.18s;
+  font-family: inherit;
+}
+
+#createacc:hover {
+  background: #f8fafc;
+  border-color: var(--ms-blue-primary);
+}
+
+/* Onboarding Specific */
+#inputboxwrap {
+  display: flex;
+  gap: 12px;
+}
+
+#inputboxwrap > div {
+  flex: 1;
+}
+
+.skillscontainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.skillsbox {
+  padding: 6px 12px;
+  background: #f8fafc;
+  border: 1.5px solid var(--ms-border-input);
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--ms-slate-700);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.skillsbox:hover {
+  border-color: var(--ms-blue-primary);
+  background: #f1f5f9;
+}
+
+.skillsbox.skillsboxstyle {
+  background: var(--ms-green-primary);
+  border-color: var(--ms-green-dark);
+  color: white;
+  box-shadow: 0 2px 6px rgba(46, 106, 99, 0.25);
+}

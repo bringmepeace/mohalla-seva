@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civic Donations & Campaigns | Mohalla Seva</title>
+
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- Project Styles -->
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="donation.css">
+</head>
+
+<body>
+
+  <!-- Unified Global Header (Auto-hydrated by navbar.js) -->
+  <header class="ms-header"></header>
+
+  <div class="donation-page-wrap">
+    
+    <!-- Top Filter Header Bar -->
+    <div class="donation-header-bar">
+      <h1>
+        <span class="material-symbols-outlined" style="color:#006324; font-size:32px;">volunteer_activism</span>
+        Civic Crowdfunding & Micro-Donation Feed
+      </h1>
+
+      <!-- Functional Category Chips -->
+      <div class="categorybtns">
+        <button type="button" class="category-chip-btn active" data-category="all">All Campaigns</button>
+        <button type="button" class="category-chip-btn" data-category="Sanitation">Sanitation</button>
+        <button type="button" class="category-chip-btn" data-category="Education">Education</button>
+        <button type="button" class="category-chip-btn" data-category="Health">Health</button>
+        <button type="button" class="category-chip-btn" data-category="Infrastructure">Infrastructure</button>
+        <button type="button" class="category-chip-btn" data-category="Women and childrens safety">Women & Children Safety</button>
+        <button type="button" class="category-chip-btn" data-category="Old age Home">Old Age Home</button>
+        <button type="button" class="category-chip-btn" data-category="Empowerment">Empowerment</button>
+      </div>
+    </div>
+
+    <!-- Campaigns Dynamic Grid -->
+    <div class="campaigns-grid-container" id="campaigns-grid"></div>
+
+  </div>
+
+  <!-- Interactive Real Payment Gateway Modal -->
+  <div class="donation-modal-overlay" id="donation-checkout-modal">
+    <div class="donation-modal-box gateway-box">
+      <div class="donation-modal-header">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <span class="material-symbols-outlined" style="color:var(--ms-green-primary);">verified_user</span>
+          <h3 style="margin:0; font-size:1.15rem;">Secure Payment Gateway</h3>
+        </div>
+        <button type="button" class="modal-close-circle-btn" id="btn-close-checkout" aria-label="Close">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      
+      <div class="donation-modal-body">
+        <!-- Target Initiative Info -->
+        <div class="gateway-campaign-summary">
+          <span class="campaign-summary-badge">Accredited Civic Campaign</span>
+          <h4 id="checkout-campaign-title" style="margin:4px 0; font-size:0.95rem; color:#1e293b;">
+            Rajkriti Vikas School: 50 Notebooks & Study Kits Needed
+          </h4>
+          <span id="checkout-campaign-ngo" style="font-size:0.78rem; color:#64748b;">Clean Delhi & Ranchi Foundation (Ward 12)</span>
+        </div>
+
+        <!-- Amount Selection -->
+        <label style="font-size:0.82rem; font-weight:700; color:#475569; display:block; margin:0.75rem 0 6px;">
+          Contribution Amount (INR ₹)
+        </label>
+        
+        <div class="amount-presets-grid">
+          <button type="button" class="preset-amount-btn" data-amount="250">₹250</button>
+          <button type="button" class="preset-amount-btn active" data-amount="500">₹500</button>
+          <button type="button" class="preset-amount-btn" data-amount="1000">₹1,000</button>
+          <button type="button" class="preset-amount-btn" data-amount="2500">₹2,500</button>
+        </div>
+
+        <input type="number" class="custom-amount-input" id="custom-donation-amount" value="500" placeholder="Enter custom amount">
+
+        <!-- Gateway Method Tabs: UPI vs Card vs Netbanking -->
+        <div class="gateway-tabs-bar">
+          <button type="button" class="gateway-tab-btn active" data-tab="upi">
+            <span class="material-symbols-outlined">qr_code_scanner</span>
+            UPI / QR
+          </button>
+          <button type="button" class="gateway-tab-btn" data-tab="card">
+            <span class="material-symbols-outlined">credit_card</span>
+            Debit/Credit Card
+          </button>
+          <button type="button" class="gateway-tab-btn" data-tab="netbanking">
+            <span class="material-symbols-outlined">account_balance</span>
+            NetBanking
+          </button>
+        </div>
+
+        <!-- TAB 1: Real Dynamic UPI QR & Intent -->
+        <div class="gateway-tab-pane active" id="tab-pane-upi">
+          <div class="upi-gateway-container">
+            <div class="upi-qr-card">
+              <img id="upi-dynamic-qr" src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=upi://pay?pa=mohallaseva@upi%26pn=Mohalla+Seva+Civic+Foundation%26am=500%26cu=INR" alt="UPI QR Code">
+              <div class="upi-scan-meta">
+                <span class="upi-timer" id="upi-countdown">Expires in 04:59</span>
+                <span style="font-size:0.72rem; color:#64748b;">Scan with any UPI App</span>
+              </div>
+            </div>
+            <div class="upi-apps-badges">
+              <span class="app-badge"><span class="material-symbols-outlined">payments</span> GPay</span>
+              <span class="app-badge"><span class="material-symbols-outlined">phone_android</span> PhonePe</span>
+              <span class="app-badge"><span class="material-symbols-outlined">account_balance_wallet</span> Paytm</span>
+              <span class="app-badge"><span class="material-symbols-outlined">shield</span> BHIM</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: Card Gateway -->
+        <div class="gateway-tab-pane" id="tab-pane-card">
+          <div class="card-inputs-grid">
+            <div class="card-field">
+              <label>Card Number</label>
+              <div class="card-input-with-icon">
+                <span class="material-symbols-outlined">credit_card</span>
+                <input type="text" id="card-num-input" placeholder="4111 2222 3333 4444" maxlength="19">
+              </div>
+            </div>
+            <div style="display:flex; gap:10px;">
+              <div class="card-field" style="flex:1;">
+                <label>Expiry (MM/YY)</label>
+                <input type="text" id="card-exp-input" placeholder="12/28" maxlength="5">
+              </div>
+              <div class="card-field" style="flex:1;">
+                <label>CVV / CVC</label>
+                <input type="password" id="card-cvv-input" placeholder="•••" maxlength="4">
+              </div>
+            </div>
+            <div class="card-field">
+              <label>Name on Card</label>
+              <input type="text" id="card-name-input" placeholder="Thakur Pratap">
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: NetBanking Gateway -->
+        <div class="gateway-tab-pane" id="tab-pane-netbanking">
+          <div class="bank-selection-grid">
+            <label class="bank-pill active"><input type="radio" name="bank" value="SBI" checked> SBI</label>
+            <label class="bank-pill"><input type="radio" name="bank" value="HDFC"> HDFC</label>
+            <label class="bank-pill"><input type="radio" name="bank" value="ICICI"> ICICI</label>
+            <label class="bank-pill"><input type="radio" name="bank" value="AXIS"> AXIS</label>
+            <label class="bank-pill"><input type="radio" name="bank" value="PNB"> PNB</label>
+            <label class="bank-pill"><input type="radio" name="bank" value="KOTAK"> Kotak</label>
+          </div>
+        </div>
+
+        <!-- Trust Badge & Zero Surcharge note -->
+        <div class="gateway-security-badge">
+          <span class="material-symbols-outlined" style="color:#16a34a; font-size:18px;">lock</span>
+          <span>256-Bit SSL Encrypted • 80G Tax Deductible (Govt of India) • 0% Platform Fee</span>
+        </div>
+
+        <!-- Gateway Action Buttons -->
+        <div style="display:flex; flex-direction:column; gap:8px;">
+          <button type="button" class="pay-confirm-btn" id="btn-confirm-payment">
+            Pay ₹<span id="btn-pay-amount">500</span> Securely
+          </button>
+          
+          <button type="button" class="pay-razorpay-popup-btn" id="btn-open-razorpay-direct">
+            <span class="material-symbols-outlined">launch</span>
+            Launch Razorpay Checkout Popup
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Big Card Impact Report & Financial Transparency Modal -->
+  <div class="donation-modal-overlay" id="donation-impact-modal">
+    <div class="donation-modal-box impact-modal-card">
+      <div class="donation-modal-header impact-header">
+        <div style="display:flex; align-items:center; gap:10px;">
+          <div class="impact-header-badge-icon">
+            <span class="material-symbols-outlined">analytics</span>
+          </div>
+          <div>
+            <h3 style="margin:0; font-size:1.15rem; font-weight:700;">Campaign Impact & Utilization Report</h3>
+            <span style="font-size:0.75rem; color:#94a3b8;">Audited Civic Expenditure • Ward 12 Municipal Registry</span>
+          </div>
+        </div>
+        <button type="button" class="modal-close-circle-btn" id="btn-close-impact" aria-label="Close">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+
+      <div class="donation-modal-body impact-modal-body" id="impact-modal-content">
+        <!-- Injected dynamically via JS -->
+      </div>
+
+      <div class="impact-modal-footer">
+        <button type="button" class="impact-footer-close-btn" id="btn-footer-close-impact">Close</button>
+        <button type="button" class="impact-footer-donate-btn" id="btn-impact-proceed-donate">
+          <span class="material-symbols-outlined" style="font-size:18px;">favorite</span>
+          Contribute to this Goal
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Official Digital 80G Tax Receipt Modal -->
+  <div class="donation-modal-overlay" id="donation-receipt-modal">
+    <div class="donation-modal-box receipt-box">
+      <div class="receipt-header-banner">
+        <span class="material-symbols-outlined receipt-check-icon">check_circle</span>
+        <h2>Contribution Successful!</h2>
+        <p>Thank you for empowering your local mohalla</p>
+      </div>
+
+      <div class="receipt-body" id="receipt-content-area">
+        <div class="receipt-official-stamp">80G TAX EXEMPT</div>
+        
+        <div class="receipt-row">
+          <span class="receipt-label">Receipt Number:</span>
+          <span class="receipt-value" id="rec-number">REC-MS-2026-849201</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Transaction ID:</span>
+          <span class="receipt-value" id="rec-txnid">TXN_9A8B7C6D5E</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Initiative Funded:</span>
+          <span class="receipt-value" id="rec-campaign">Rajkriti Vikas School</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Donor Name:</span>
+          <span class="receipt-value" id="rec-donor">Thakur Pratap</span>
+        </div>
+        <div class="receipt-row">
+          <span class="receipt-label">Payment Mode:</span>
+          <span class="receipt-value" id="rec-mode">UPI Instant Pay</span>
+        </div>
+        <div class="receipt-row total-row">
+          <span class="receipt-label">Total Amount Paid:</span>
+          <span class="receipt-value-highlight">₹<span id="rec-amount">500</span></span>
+        </div>
+
+        <div class="receipt-tax-clause">
+          <p><strong>Exemption Notice:</strong> Mohalla Seva donations qualify for 50% deduction under Section 80G of the Income Tax Act, 1961 (Reg. No: CIT/EXEMP/2024-25/80G/1029).</p>
+        </div>
+      </div>
+
+      <div class="receipt-actions">
+        <button type="button" class="receipt-print-btn" onclick="window.print()">
+          <span class="material-symbols-outlined">print</span> Print / Download Receipt
+        </button>
+        <button type="button" class="receipt-close-btn" id="btn-close-receipt">
+          Done
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="donation.js"></script>
+</body>
+
+</html>

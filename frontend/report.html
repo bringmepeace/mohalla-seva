@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report Issue | Mohalla Seva</title>
+
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <!-- Local Leaflet CSS & JS (Ultra-fast, zero CDN blocks, 100% reliable) -->
+  <link rel="stylesheet" href="css/leaflet.css">
+  <script src="js/leaflet.js"></script>
+
+  <!-- Project Styles -->
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="report.css">
+</head>
+
+<body>
+
+  <!-- Unified Global Header (Auto-hydrated by navbar.js) -->
+  <header class="ms-header"></header>
+
+  <div class="report-page-container">
+    <div class="set_margin">
+
+      <!-- Section 1: Live Map & Location -->
+      <section class="mapninfo">
+        <div class="locationandmap">
+          <h2>Live Map</h2>
+          <h2>Location</h2>
+        </div>
+
+        <div class="map_view">
+          <div class="map" id="report-map"></div>
+
+          <div class="map_area">
+            <div class="statencity_section">
+              <span>State & City</span>
+              <div class="statencity_input">
+                <input type="text" id="stateinput" value="Jharkhand" placeholder="Enter State">
+                <input type="text" id="cityinput" value="Ranchi" placeholder="Enter City">
+              </div>
+            </div>
+
+            <div class="landmarknbutton">
+              <div class="areanlandmark_section">
+                <span>Area and Landmark</span>
+                <div class="arealandmark_input">
+                  <input type="text" id="report-area" placeholder="Enter Area (e.g. Lalpur)" value="Lalpur (Ward 12)">
+                  <textarea id="report-landmark" placeholder="Enter Landmark or coordinates"></textarea>
+                </div>
+              </div>
+
+              <!-- Instant Location Group Matching User Screenshot (media_1788695469531.png) -->
+              <div class="instant-location-control-group">
+                <!-- Pinned Message Yellow Card -->
+                <div class="pinned-message-card">
+                  <div class="pin-hole-wrapper">
+                    <svg class="push-pin-svg" viewBox="0 0 32 32" width="26" height="26" fill="none">
+                      <!-- Pin Needle / Stem entering hole -->
+                      <line x1="20" y1="11" x2="11" y2="20" stroke="#000000" stroke-width="2.5" stroke-linecap="round"/>
+                      <!-- White Hole with 2px Black Border -->
+                      <circle cx="10" cy="21" r="5" fill="#ffffff" stroke="#000000" stroke-width="2"/>
+                      <!-- 3D Blue Push Pin Head -->
+                      <circle cx="21" cy="9" r="6" fill="#0b4be0" stroke="#000000" stroke-width="1.6"/>
+                      <circle cx="19.5" cy="7.5" r="2" fill="#93c5fd"/>
+                      <circle cx="21" cy="9" r="2.6" fill="#003eb1"/>
+                    </svg>
+                  </div>
+                  <div class="pinned-card-text">
+                    Either fill this form or<br>press this button
+                  </div>
+                </div>
+
+                <!-- Separated Instant Location Button with Gap -->
+                <button type="button" class="instant-location-btn" id="instant-location-btn">
+                  Instant location
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Category -->
+      <section class="category_box">
+        <h2>Category</h2>
+        <div class="category">
+          <button type="button" class="category-btn active" data-category="Sanitation and waste">
+            <span class="material-symbols-outlined">delete</span>
+            Sanitation & Waste
+          </button>
+          <button type="button" class="category-btn" data-category="Education">
+            <span class="material-symbols-outlined">school</span>
+            Education
+          </button>
+          <button type="button" class="category-btn" data-category="Health & Hygiene">
+            <span class="material-symbols-outlined">health_and_safety</span>
+            Health & Hygiene
+          </button>
+          <button type="button" class="category-btn" data-category="Infrastructure & road">
+            <span class="material-symbols-outlined">apartment</span>
+            Infrastructure & Road
+          </button>
+          <button type="button" class="category-btn" data-category="Environment & Greenery">
+            <span class="material-symbols-outlined">forest</span>
+            Environment & Greenery
+          </button>
+          <button type="button" class="category-btn" data-category="Women & children Safety">
+            <span class="material-symbols-outlined">security</span>
+            Women & Children Safety
+          </button>
+          <button type="button" class="category-btn" data-category="Senior Citizen support">
+            <span class="material-symbols-outlined">elderly</span>
+            Senior Citizen Support
+          </button>
+          <button type="button" class="category-btn" data-category="Unemployment / Skill Development">
+            <span class="material-symbols-outlined">psychology</span>
+            Skill Development
+          </button>
+        </div>
+      </section>
+
+      <!-- Section 3: Photo Evidence (Left Upload/Camera, Right Stacked Deck) -->
+      <section class="photo_evidence">
+        <h2>Photo Evidence</h2>
+        <div class="evidence_two_boxes">
+          
+          <!-- Left Box: Actions (File upload & Camera) -->
+          <div class="evidence_action_box">
+            
+            <!-- Default Choice Buttons -->
+            <div class="evidence-action-buttons">
+              <button type="button" class="action-trigger-btn" id="btn-trigger-upload">
+                <span class="material-symbols-outlined">upload_file</span>
+                Upload from Device
+              </button>
+              <button type="button" class="action-trigger-btn" id="btn-trigger-camera">
+                <span class="material-symbols-outlined">photo_camera</span>
+                Capture with Camera
+              </button>
+            </div>
+            <span style="font-size:0.75rem; color:rgba(255,255,255,0.8); z-index:2;">Multiple photos & videos supported</span>
+
+            <!-- Hidden File Input -->
+            <input type="file" id="device-file-input" multiple accept="image/*,video/*" style="display:none;">
+
+            <!-- Camera Viewfinder Overlay -->
+            <div class="camera-viewfinder-overlay" id="camera-viewfinder-overlay">
+              <video class="camera-video-element" id="camera-video-stream" autoplay playsinline muted></video>
+              <div class="camera-controls-bar">
+                <button type="button" class="camera-close-shutter" id="btn-close-camera">Cancel</button>
+                <button type="button" class="camera-shutter-btn" id="camera-shutter-trigger" title="Snap Photo"></button>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Box: Stacked Cards Display Area -->
+          <div class="evidence_display_box" id="evidence-display-box" title="Click to inspect all attached files">
+            <!-- Dynamically populated with stacked cards by report.js -->
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Section 4: Description Input Field -->
+      <section class="description_section">
+        <h2>Issue Description & Details</h2>
+        <div class="description_input_wrap">
+          <span class="material-symbols-outlined desc-field-icon">edit_note</span>
+          <textarea id="report-description" placeholder="Describe the civic issue in detail (e.g. overflow duration, hazards to pedestrians, exact street landmarks)..." rows="3"></textarea>
+        </div>
+      </section>
+
+      <!-- Submit Button -->
+      <button type="button" class="submit-btn" id="submit-report-btn">
+        <span class="material-symbols-outlined">send</span>
+        Submit Civic Report
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Lightbox / Full Inspection Modal for Stacked Files -->
+  <div class="evidence-lightbox-modal" id="evidence-lightbox-modal">
+    <div class="lightbox-content-box">
+      <div class="lightbox-header">
+        <h3>Attached Evidence Files</h3>
+        <span class="material-symbols-outlined lightbox-close-icon" id="btn-close-lightbox">close</span>
+      </div>
+      <div class="lightbox-body" id="lightbox-items-body"></div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="report.js"></script>
+</body>
+
+</html>

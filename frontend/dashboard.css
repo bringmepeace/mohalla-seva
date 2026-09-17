@@ -1,0 +1,506 @@
+/* MOHALLA SEVA - CITIZEN DASHBOARD STYLES */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --ms-blue-primary: #153D74;
+    --ms-blue-dark: #0e294f;
+    --ms-blue-light: #1c4b8e;
+    --ms-green-primary: #2E6A63;
+    --ms-green-dark: #23534d;
+    --ms-green-light: #3a837b;
+    --ms-slate-900: #0f172a;
+    --ms-slate-800: #1e293b;
+    --ms-slate-700: #334155;
+    --ms-slate-600: #475569;
+    --ms-slate-500: #64748b;
+    --ms-slate-400: #94a3b8;
+    --ms-border: #e2e8f0;
+    --ms-border-input: #cbd5e1;
+    --ms-font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--ms-font-family);
+    background-color: #f8fafc;
+    color: var(--ms-slate-800);
+    min-height: 100vh;
+}
+
+main {
+    padding-top: 85px;
+    padding-bottom: 4rem;
+    width: 100%;
+}
+
+.content {
+    margin: auto;
+    width: 92%;
+    max-width: 1400px;
+}
+
+/* Titles above map and stats */
+.name_placement {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+#map_name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--ms-slate-900);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#stats_name {
+    font-size: 1.15rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--ms-slate-900);
+}
+
+/* Map & Stats Container */
+.mapntools {
+    width: 100%;
+    gap: 1.5rem;
+    display: flex;
+    margin-bottom: 2.25rem;
+}
+
+.map {
+    border: 1px solid var(--ms-border-input);
+    height: 480px;
+    width: 68%;
+    background-color: #f1f5f9;
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
+    position: relative;
+}
+
+/* Ward Stats Card */
+.ward-stats-card {
+    width: 32%;
+    background-color: #ffffff;
+    border: 1px solid var(--ms-border);
+    border-radius: 14px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.ward-stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f1f5f9;
+    padding-bottom: 0.85rem;
+    margin-bottom: 1rem;
+}
+
+.ward-stats-header h3 {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--ms-slate-900);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ward-stats-badge {
+    background: #f1f5f9;
+    color: var(--ms-blue-primary);
+    border: 1px solid var(--ms-border-input);
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.ward-stats-badge::before {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--ms-green-primary);
+}
+
+/* 3 Stat Item Boxes */
+.ward-stat-item {
+    background: #f8fafc;
+    border: 1px solid var(--ms-border);
+    border-radius: 12px;
+    padding: 1rem 1.15rem;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 0.75rem;
+    transition: all 0.18s ease;
+}
+
+.ward-stat-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.ward-stat-item.active-issue {
+    border-left: 4px solid var(--ms-blue-primary);
+}
+
+.ward-stat-item.resolved-issue {
+    border-left: 4px solid var(--ms-green-primary);
+}
+
+.ward-stat-item.active-volunteers {
+    border-left: 4px solid var(--ms-blue-primary);
+}
+
+.ward-stat-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.ward-stat-item.active-issue .ward-stat-icon-wrap {
+    background: #f1f5f9;
+    color: var(--ms-blue-primary);
+}
+
+.ward-stat-item.resolved-issue .ward-stat-icon-wrap {
+    background: #f0f7f6;
+    color: var(--ms-green-primary);
+}
+
+.ward-stat-item.active-volunteers .ward-stat-icon-wrap {
+    background: #f1f5f9;
+    color: var(--ms-blue-primary);
+}
+
+.ward-stat-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.ward-stat-label {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--ms-slate-500);
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.ward-stat-val {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--ms-slate-900);
+    line-height: 1.2;
+}
+
+.ward-stat-sub {
+    font-size: 0.75rem;
+    color: var(--ms-slate-400);
+    margin-top: 2px;
+}
+
+/* Urgent Local Needs Section */
+.needs-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+}
+
+.needs-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    color: var(--ms-slate-900);
+}
+
+/* Filter Box on Right */
+.needs-filter-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid var(--ms-border);
+    border-radius: 10px;
+    padding: 6px 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.filter-group label {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--ms-slate-600);
+}
+
+.filter-select {
+    border: 1px solid var(--ms-border-input);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ms-slate-800);
+    background: #ffffff;
+    outline: none;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+.filter-select:focus {
+    border-color: var(--ms-blue-primary);
+}
+
+/* Ward Updates Grid Feed */
+.ward-updates-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+/* Individual Issue Card */
+.issue-feed-card {
+    background: #ffffff;
+    border: 1px solid var(--ms-border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
+    transition: all 0.2s ease;
+}
+
+.issue-feed-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+    border-color: var(--ms-border-input);
+}
+
+.issue-card-media {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    background: #e2e8f0;
+    overflow: hidden;
+}
+
+.issue-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.issue-feed-card:hover .issue-card-media img {
+    transform: scale(1.02);
+}
+
+.issue-card-category-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(15, 23, 42, 0.85);
+    color: #ffffff;
+    font-size: 0.75rem;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 20px;
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.issue-card-status-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+.status-pending {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fde68a;
+}
+
+.status-assigned {
+    background: #f1f5f9;
+    color: var(--ms-blue-primary);
+    border: 1px solid #cbd5e1;
+}
+
+.status-resolved {
+    background: #f0fdf4;
+    color: var(--ms-green-primary);
+    border: 1px solid #bbf7d0;
+}
+
+.issue-card-body {
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    justify-content: space-between;
+}
+
+.issue-card-title {
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--ms-slate-900);
+    margin-bottom: 0.4rem;
+    line-height: 1.35;
+}
+
+.issue-card-location {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.82rem;
+    color: var(--ms-slate-500);
+    margin-bottom: 0.75rem;
+}
+
+.issue-card-location .material-symbols-outlined {
+    font-size: 16px;
+    color: var(--ms-blue-primary);
+}
+
+.issue-card-desc {
+    font-size: 0.88rem;
+    color: var(--ms-slate-600);
+    line-height: 1.45;
+    margin-bottom: 1.25rem;
+}
+
+.issue-card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #f1f5f9;
+    padding-top: 0.85rem;
+}
+
+.issue-upvote-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #f8fafc;
+    color: var(--ms-slate-700);
+    border: 1px solid var(--ms-border);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s;
+    font-family: inherit;
+}
+
+.issue-upvote-btn:hover {
+    background: #f1f5f9;
+    color: var(--ms-blue-primary);
+    border-color: var(--ms-border-input);
+}
+
+.issue-view-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    color: var(--ms-blue-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.issue-view-btn:hover {
+    text-decoration: underline;
+}
+
+/* Modal for issue detail */
+.issue-modal-backdrop {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 23, 42, 0.75);
+    z-index: 10050;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.issue-modal-backdrop.active {
+    display: flex;
+}
+
+.issue-modal-box {
+    background: #ffffff;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 680px;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+    border: 1px solid var(--ms-border);
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .mapntools {
+        flex-direction: column;
+    }
+    .map {
+        width: 100%;
+        height: 380px;
+    }
+    .ward-stats-card {
+        width: 100%;
+    }
+}
+
+/* Custom Leaflet Map Pin Styles */
+.ms-map-pin, .custom-leaflet-pin {
+    background: transparent !important;
+    border: none !important;
+}
+

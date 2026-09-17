@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civic Donations & Campaigns | Mohalla Seva</title>
+
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+  <!-- Project Styles -->
+  <link rel="stylesheet" href="css/navbar.css">
+  <link rel="stylesheet" href="donation.css">
+</head>
+
+<body>
+
+  <!-- Unified Global Header (Auto-hydrated by navbar.js) -->
+  <header class="ms-header"></header>
+
+  <div class="donation-page-wrap">
+    
+    <!-- Top Filter Header Bar -->
+    <div class="donation-header-bar">
+      <h1>
+        <span class="material-symbols-outlined" style="color:#006324; font-size:32px;">volunteer_activism</span>
+        Civic Crowdfunding & Micro-Donation Feed
+      </h1>
+
+      <!-- Functional Category Chips -->
+      <div class="categorybtns">
+        <button type="button" class="category-chip-btn active" data-category="all">All Campaigns</button>
+        <button type="button" class="category-chip-btn" data-category="Sanitation">Sanitation</button>
+        <button type="button" class="category-chip-btn" data-category="Education">Education</button>
+        <button type="button" class="category-chip-btn" data-category="Health">Health</button>
+        <button type="button" class="category-chip-btn" data-category="Infrastructure">Infrastructure</button>
+        <button type="button" class="category-chip-btn" data-category="Women and childrens safety">Women & Children Safety</button>
+        <button type="button" class="category-chip-btn" data-category="Old age Home">Old Age Home</button>
+        <button type="button" class="category-chip-btn" data-category="Empowerment">Empowerment</button>
+      </div>
+    </div>
+
+    <!-- Campaigns Dynamic Grid -->
+    <div class="campaigns-grid-container" id="campaigns-grid"></div>
+
+  </div>
+
+  <!-- Interactive Donation Checkout Modal -->
+  <div class="donation-modal-overlay" id="donation-checkout-modal">
+    <div class="donation-modal-box">
+      <div class="donation-modal-header">
+        <h3>Support Civic Initiative</h3>
+        <span class="material-symbols-outlined" id="btn-close-checkout" style="cursor:pointer;">close</span>
+      </div>
+      <div class="donation-modal-body">
+        <p style="font-size:0.92rem; color:#475569; margin:0 0 1rem 0;" id="checkout-campaign-title">
+          Rajkriti Vikas School: 50 Notebooks & Study Kits Needed
+        </p>
+
+        <label style="font-size:0.82rem; font-weight:700; color:#64748b; display:block; margin-bottom:6px;">
+          Select Donation Amount (₹)
+        </label>
+        
+        <div class="amount-presets-grid">
+          <button type="button" class="preset-amount-btn" data-amount="250">₹250</button>
+          <button type="button" class="preset-amount-btn active" data-amount="500">₹500</button>
+          <button type="button" class="preset-amount-btn" data-amount="1000">₹1,000</button>
+          <button type="button" class="preset-amount-btn" data-amount="2500">₹2,500</button>
+        </div>
+
+        <input type="number" class="custom-amount-input" id="custom-donation-amount" value="500" placeholder="Enter custom amount">
+
+        <div style="background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:12px; margin-bottom:1.25rem;">
+          <div style="display:flex; justify-content:space-between; font-size:0.85rem; font-weight:600; color:#334155; margin-bottom:4px;">
+            <span>Payment Mode:</span>
+            <span style="color:#006324;">UPI QR / NetBanking / Cards</span>
+          </div>
+          <p style="font-size:0.75rem; color:#64748b; margin:0;">
+            100% of funds go directly into accredited Ward 12 material purchases. Zero platform commission.
+          </p>
+        </div>
+
+        <button type="button" class="pay-confirm-btn" id="btn-confirm-payment">
+          Confirm Contribution & Pay
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/api.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="donation.js"></script>
+</body>
+
+</html>

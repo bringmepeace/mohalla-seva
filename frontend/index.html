@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohalla Seva Dashboard</title>
+
+    <!-- Material Symbols Outlined -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Project Styles -->
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="dashboard.css">
+</head>
+
+<body>
+
+    <!-- Unified Global Header (Auto-hydrated by navbar.js) -->
+    <header class="ms-header"></header>
+
+    <main>
+        <div class="content">
+
+            <!-- Section Headings -->
+            <div class="name_placement">
+                <h2 id="map_name">
+                    <span class="material-symbols-outlined" style="color:#2563eb;">map</span>
+                    COMMUNITY MAP - WARD 12 (RANCHI)
+                </h2>
+                <h2 id="stats_name">WARD SNAPSHOT</h2>
+            </div>
+
+            <!-- Map and Ward Stats Side-by-Side -->
+            <div class="mapntools">
+                
+                <!-- Leaflet Interactive Community Map -->
+                <div class="map" id="map"></div>
+
+                <!-- Ward Stats Box (Replacing 3 green buttons) -->
+                <div class="ward-stats-card">
+                    <div>
+                        <div class="ward-stats-header">
+                            <h3 id="ward-stats-heading">Ward 12 Stats</h3>
+                            <span class="ward-stats-badge">Live Ward Telemetry</span>
+                        </div>
+
+                        <!-- 1. Active Issue -->
+                        <div class="ward-stat-item active-issue">
+                            <div class="ward-stat-icon-wrap">
+                                <span class="material-symbols-outlined" style="font-size:26px;">report_problem</span>
+                            </div>
+                            <div class="ward-stat-info">
+                                <span class="ward-stat-label">Active Issue</span>
+                                <span class="ward-stat-val" id="stat-active-issues">4</span>
+                                <span class="ward-stat-sub">Requires NGO & Municipal Action</span>
+                            </div>
+                        </div>
+
+                        <!-- 2. Resolved Issue -->
+                        <div class="ward-stat-item resolved-issue">
+                            <div class="ward-stat-icon-wrap">
+                                <span class="material-symbols-outlined" style="font-size:26px;">task_alt</span>
+                            </div>
+                            <div class="ward-stat-info">
+                                <span class="ward-stat-label">Resolved Issue</span>
+                                <span class="ward-stat-val" id="stat-resolved-issues">8</span>
+                                <span class="ward-stat-sub">Verified Before/After Proof</span>
+                            </div>
+                        </div>
+
+                        <!-- 3. Active Volunteers -->
+                        <div class="ward-stat-item active-volunteers">
+                            <div class="ward-stat-icon-wrap">
+                                <span class="material-symbols-outlined" style="font-size:26px;">diversity_3</span>
+                            </div>
+                            <div class="ward-stat-info">
+                                <span class="ward-stat-label">Active Volunteers</span>
+                                <span class="ward-stat-val" id="stat-active-volunteers">42</span>
+                                <span class="ward-stat-sub">On-Field Citizens & Responders</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="font-size:0.78rem; color:#94a3b8; text-align:center; padding-top:0.5rem; border-top:1px solid #f8fafc;">
+                        Ward Council Jurisdiction • Updated Real-time
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Urgent Local Needs Header & Right-aligned Filter Box -->
+            <div class="needs-header-row">
+                <h2 class="needs-title" id="urgent-needs-title">ACTIVE URGENT LOCAL NEEDS - WARD 12</h2>
+
+                <div class="needs-filter-box">
+                    <div class="filter-group">
+                        <label for="filter-category">Category:</label>
+                        <select id="filter-category" class="filter-select">
+                            <option value="all">All Categories</option>
+                            <option value="Sanitation">Sanitation & Waste</option>
+                            <option value="Infrastructure">Infrastructure & Road</option>
+                            <option value="Safety">Women & Child Safety</option>
+                            <option value="Health">Health & Hygiene</option>
+                            <option value="Environment">Environment & Greenery</option>
+                            <option value="Education">Education</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="filter-status">Status:</label>
+                        <select id="filter-status" class="filter-select">
+                            <option value="all">All Status</option>
+                            <option value="PENDING">Pending</option>
+                            <option value="ASSIGNED">Assigned</option>
+                            <option value="RESOLVED">Resolved</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ward Updates Dynamic Feed -->
+            <div class="ward-updates-grid" id="ward-updates-feed"></div>
+
+        </div>
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="dashboard.js"></script>
+</body>
+
+</html>
