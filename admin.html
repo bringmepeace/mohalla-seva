@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Admin Command Console | Mohalla Seva</title>
+
+    <!-- Material Symbols Outlined -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <!-- Leaflet CSS & JS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Project Styles -->
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <!-- Unified Global Header (Auto-hydrated by navbar.js) -->
+    <header class="ms-header"></header>
+
+    <div class="dashboard">
+
+        <!-- Left Slidebar -->
+        <aside class="slidebar">
+            <div class="home slidebaroption" data-feed="feedcontainer" title="Dashboard">
+                <span class="material-symbols-outlined">dashboard</span>
+                <span class="iconname">Dashboard</span>
+            </div>
+            <div class="report" data-feed="reportfeed" title="Report Management">
+                <span class="material-symbols-outlined">description</span>
+                <span class="iconname">Reports</span>
+            </div>
+            <div class="volunteer" data-feed="volunteerfeed" title="Volunteer Directory">
+                <span class="material-symbols-outlined">diversity_3</span>
+                <span class="iconname">Volunteers</span>
+            </div>
+            <div class="donation" data-feed="donationfeed" title="Donations Management">
+                <span class="material-symbols-outlined">volunteer_activism</span>
+                <span class="iconname">Donations</span>
+            </div>
+        </aside>
+
+        <!-- Main Viewport Feeds -->
+        <main class="main-content-viewport">
+            
+            <!-- 1. FEED: OVERVIEW DASHBOARD -->
+            <div class="feedcontainer mainshow">
+                
+                <!-- 5 Instant Metric Cards Styled Strictly in #153D74 and #2E6A63 -->
+                <div class="instantview">
+                    <div class="kpi-metric-card kpi-blue">
+                        <span class="material-symbols-outlined icon">report_problem</span>
+                        <span class="issuetag">Active Issues</span>
+                        <h2>28</h2>
+                        <p><span>▲ 12%</span> from last week</p>
+                    </div>
+
+                    <div class="kpi-metric-card kpi-blue-alt">
+                        <span class="material-symbols-outlined icon">pending_actions</span>
+                        <span class="issuetag">In Progress</span>
+                        <h2>12</h2>
+                        <p><span>▲ 5%</span> assigned to NGOs</p>
+                    </div>
+
+                    <div class="kpi-metric-card kpi-green">
+                        <span class="material-symbols-outlined icon">task_alt</span>
+                        <span class="issuetag">Resolved</span>
+                        <h2>39</h2>
+                        <p><span>▲ 18%</span> proof verified</p>
+                    </div>
+
+                    <div class="kpi-metric-card kpi-green-alt">
+                        <span class="material-symbols-outlined icon">payments</span>
+                        <span class="issuetag">Total Donations</span>
+                        <h2>₹1,85,000</h2>
+                        <p><span>▲ 22%</span> 7 campaigns funded</p>
+                    </div>
+
+                    <div class="kpi-metric-card kpi-blue">
+                        <span class="material-symbols-outlined icon">groups</span>
+                        <span class="issuetag">Volunteers</span>
+                        <h2>340</h2>
+                        <p><span>▲ 8%</span> active on-field</p>
+                    </div>
+                </div>
+
+                <!-- Grid Row: Interactive Map and Alert Center -->
+                <div class="dashboard-grid-row">
+                    
+                    <!-- Live City Map Box -->
+                    <div class="map-card-box">
+                        <div class="admin-map-header">
+                            <h3>Ward Geospatial Ledger & Hazard Map</h3>
+                            <span style="font-size:0.75rem; font-weight:700; color:#16a34a;">● Live Municipal Telemetry</span>
+                        </div>
+                        <div id="admin-live-map"></div>
+                    </div>
+
+                    <!-- Alerts Center (Clean, Non-Repeating Realistic Feed) -->
+                    <div class="alerts-center-box">
+                        <div class="recent_heading">
+                            <span>Live Municipal Alerts</span>
+                            <a href="#">Clear All</a>
+                        </div>
+                        
+                        <div class="alertcenter_scroll">
+                            <div class="alert-item-card">
+                                <span class="notification-icon reported">
+                                    <span class="material-symbols-outlined">warning</span>
+                                </span>
+                                <div class="alert-text-info">
+                                    <h4>Hazardous Pothole Reported</h4>
+                                    <p>School Road, Ward 12 • 10m ago</p>
+                                </div>
+                            </div>
+
+                            <div class="alert-item-card">
+                                <span class="notification-icon resolved">
+                                    <span class="material-symbols-outlined">check_circle</span>
+                                </span>
+                                <div class="alert-text-info">
+                                    <h4>Street Lights Repaired & Verified</h4>
+                                    <p>Overbridge Walkway, Ward 12 • 45m ago</p>
+                                </div>
+                            </div>
+
+                            <div class="alert-item-card">
+                                <span class="notification-icon joined">
+                                    <span class="material-symbols-outlined">person_add</span>
+                                </span>
+                                <div class="alert-text-info">
+                                    <h4>New Volunteer Registered</h4>
+                                    <p>Priya Patel (Electrician Skill) • 1h ago</p>
+                                </div>
+                            </div>
+
+                            <div class="alert-item-card">
+                                <span class="notification-icon donation">
+                                    <span class="material-symbols-outlined">volunteer_activism</span>
+                                </span>
+                                <div class="alert-text-info">
+                                    <h4>Donation of ₹2,500 Received</h4>
+                                    <p>Rajkriti School Study Kits • 2h ago</p>
+                                </div>
+                            </div>
+
+                            <div class="alert-item-card">
+                                <span class="notification-icon reported">
+                                    <span class="material-symbols-outlined">report_problem</span>
+                                </span>
+                                <div class="alert-text-info">
+                                    <h4>Waterlogging in Drainage Culvert</h4>
+                                    <p>Sector 3, Ward 12 • 3h ago</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- 2. FEED: REPORT MANAGEMENT -->
+            <div class="reportfeed mainshow hidden">
+                <div class="reportfeed-header">
+                    <h2 style="margin:0; font-size:1.35rem; font-weight:800;">Report & Task Management</h2>
+                    <div class="header-wrap">
+                        <div class="categorybtns">
+                            <button type="button" class="admin-cat-btn active">All Reports</button>
+                            <button type="button" class="admin-cat-btn">Sanitation</button>
+                            <button type="button" class="admin-cat-btn">Infrastructure</button>
+                            <button type="button" class="admin-cat-btn">Safety</button>
+                            <button type="button" class="admin-cat-btn">Health</button>
+                        </div>
+                        <div style="font-size:0.85rem; color:#64748b; font-weight:600;">
+                            Click any dossier card to view itemized budgeting and live seconds timer.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-reports-grid" id="admin-reports-grid"></div>
+            </div>
+
+            <!-- 3. FEED: VOLUNTEER DIRECTORY -->
+            <div class="volunteerfeed mainshow hidden">
+                <div class="reportfeed-header">
+                    <h2 style="margin:0 0 6px 0; font-size:1.35rem; font-weight:800;">Volunteer & Gamification Registry</h2>
+                    <p style="margin:0; font-size:0.88rem; color:#64748b;">
+                        Accredited ward citizens searchable by civic skills, XP rank, and completed field missions.
+                    </p>
+                </div>
+
+                <div class="volunteers-table-card">
+                    <table class="volunteers-table">
+                        <thead>
+                            <tr>
+                                <th>Volunteer</th>
+                                <th>Ward</th>
+                                <th>Specialized Skills</th>
+                                <th>Civic XP</th>
+                                <th>Field Missions</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="volunteers-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 4. FEED: DONATION MANAGEMENT (NEW!) -->
+            <div class="donationfeed mainshow hidden">
+                <div class="reportfeed-header">
+                    <h2 style="margin:0 0 6px 0; font-size:1.35rem; font-weight:800;">Donation & Financial Budgeting Ledger</h2>
+                    <p style="margin:0; font-size:0.88rem; color:#64748b;">
+                        Manage crowdfunding campaigns, citizen micro-donations, itemized purchase invoices, and disbursements.
+                    </p>
+                </div>
+
+                <!-- 4 KPI Boxes -->
+                <div class="donations-kpi-grid">
+                    <div class="donation-stat-box">
+                        <div class="stat-icon"><span class="material-symbols-outlined">payments</span></div>
+                        <div>
+                            <p>Total Raised</p>
+                            <h3>₹2,45,000</h3>
+                        </div>
+                    </div>
+                    <div class="donation-stat-box">
+                        <div class="stat-icon"><span class="material-symbols-outlined">campaign</span></div>
+                        <div>
+                            <p>Active Campaigns</p>
+                            <h3>7 Initiatives</h3>
+                        </div>
+                    </div>
+                    <div class="donation-stat-box">
+                        <div class="stat-icon"><span class="material-symbols-outlined">favorite</span></div>
+                        <div>
+                            <p>Total Donors</p>
+                            <h3>164 Citizens</h3>
+                        </div>
+                    </div>
+                    <div class="donation-stat-box">
+                        <div class="stat-icon"><span class="material-symbols-outlined">fact_check</span></div>
+                        <div>
+                            <p>Disbursed to NGOs</p>
+                            <h3>₹1,95,000</h3>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Donations Table -->
+                <div class="volunteers-table-card">
+                    <table class="volunteers-table">
+                        <thead>
+                            <tr>
+                                <th>Txn ID</th>
+                                <th>Donor Name</th>
+                                <th>Ward</th>
+                                <th>Campaign Title</th>
+                                <th>Amount</th>
+                                <th>Method</th>
+                                <th>Date / Time</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="donations-table-body"></tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- Black Transparent Screen for Modal Overlays -->
+    <div class="blackshade" id="admin-blackshade"></div>
+
+    <!-- Detailed Issue Breakdown Modal with Timer & Budgeting -->
+    <div class="admin-detail-modal" id="admin-issue-modal">
+        <div class="modal-header-bar">
+            <h3>Civic Issue Breakdown & Budget Ledger</h3>
+            <span class="material-symbols-outlined modal-close-icon" id="btn-close-admin-modal">close</span>
+        </div>
+        <div class="modal-inner-body" id="admin-modal-body"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
